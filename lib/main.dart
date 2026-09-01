@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
-void main() => runApp(const MiniStore());
+void main() => runApp(const MyApp());
 
-class MiniStore extends StatelessWidget {
-  const MiniStore({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mini Store',
-      home: const Scaffold(body: Center(child: Text('Welcome to Mini Store.'))),
+      title: 'Mary Mart',
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
     );
   }
 }
