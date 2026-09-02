@@ -45,6 +45,10 @@ ThemeData luminousTheme() {
         color: LuminousColors.onSurface,
       ),
     ),
+    iconTheme: const IconThemeData(
+      color: LuminousColors.onSurface,
+      size: 24,
+    ),
     cardTheme: CardThemeData(
       color: LuminousColors.containerLow,
       elevation: 0,

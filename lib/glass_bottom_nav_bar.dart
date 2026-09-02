@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'theme.dart';
 
@@ -14,74 +13,49 @@ class GlassBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      const NavBarItem(icon: Icons.home, label: 'Home'),
-      const NavBarItem(icon: Icons.grid_view, label: 'Categories'),
-      const NavBarItem(icon: Icons.shopping_bag, label: 'Cart'),
-      const NavBarItem(icon: Icons.person, label: 'Profile'),
-    ];
-
-    return ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          decoration: BoxDecoration(
-            color: LuminousColors.surface.withValues(alpha: 0.7),
-            border: Border(
-              top: BorderSide(
-                color: LuminousColors.onSurface.withValues(alpha: 0.1),
-                width: 0.5,
-              ),
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: LuminousColors.surface,
+        boxShadow: [
+          BoxShadow(
+            color: LuminousColors.onSurface.withValues(alpha: 0.05),
+            blurRadius: 20,
+            offset: const Offset(0, -4),
           ),
-          child: SafeArea(
-            top: false,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(items.length, (index) {
-                final isSelected = selectedIndex == index;
-                return GestureDetector(
-                  onTap: () => onItemTapped(index),
-                  behavior: HitTestBehavior.opaque,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? LuminousColors.onSurface.withValues(alpha: 0.1)
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          items[index].icon,
-                          color: isSelected
-                              ? LuminousColors.onSurface
-                              : LuminousColors.onSurface.withValues(alpha: 0.5),
-                          size: 24,
-                        ),
-                        const SizedBox(height: 4),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          width: isSelected ? 6 : 0,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            color: LuminousColors.onSurface,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-            ),
+        ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _NavItem(
+                icon: Icons.home_rounded,
+                label: 'Home',
+                isSelected: selectedIndex == 0,
+                onTap: () => onItemTapped(0),
+              ),
+              _NavItem(
+                icon: Icons.grid_view_rounded,
+                label: 'Categories',
+                isSelected: selectedIndex == 1,
+                onTap: () => onItemTapped(1),
+              ),
+              _NavItem(
+                icon: Icons.shopping_bag_outlined,
+                label: 'Cart',
+                isSelected: selectedIndex == 2,
+                onTap: () => onItemTapped(2),
+              ),
+              _NavItem(
+                icon: Icons.person_outline_rounded,
+                label: 'Profile',
+                isSelected: selectedIndex == 3,
+                onTap: () => onItemTapped(3),
+              ),
+            ],
           ),
         ),
       ),
@@ -89,9 +63,55 @@ class GlassBottomNavBar extends StatelessWidget {
   }
 }
 
-class NavBarItem {
+class _NavItem extends StatelessWidget {
   final IconData icon;
   final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
 
-  const NavBarItem({required this.icon, required this.label});
+  const _NavItem({
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? LuminousColors.onSurface.withValues(alpha: 0.08)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 24,
+              color: isSelected
+                  ? LuminousColors.onSurface
+                  : LuminousColors.onSurface.withValues(alpha: 0.4),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              width: isSelected ? 6 : 0,
+              height: 6,
+              decoration: BoxDecoration(
+                color: LuminousColors.onSurface,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
