@@ -45,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Mary Eddythe',
+            'Sherwin Sid',
             style: GoogleFonts.plusJakartaSans(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'mary.eddythe@email.com',
+            'sanol.sherwinsid@gmail.com',
             style: GoogleFonts.plusJakartaSans(
               fontSize: 14,
               color: LuminousColors.onSurface.withValues(alpha: 0.6),
@@ -80,34 +80,34 @@ class ProfileScreen extends StatelessWidget {
               subtitle: 'View your order history',
               onTap: () {},
             ),
-          const Divider(height: 1, indent: 56),
-          _SettingsTile(
-            icon: Icons.location_on_outlined,
-            title: 'Shipping Address',
-            subtitle: 'Manage your addresses',
-            onTap: () {},
-          ),
-          const Divider(height: 1, indent: 56),
-          _SettingsTile(
-            icon: Icons.credit_card,
-            title: 'Payment Methods',
-            subtitle: 'Manage your cards',
-            onTap: () {},
-          ),
-          const Divider(height: 1, indent: 56),
-          _SettingsTile(
-            icon: Icons.notifications_outlined,
-            title: 'Notifications',
-            subtitle: 'Push & email preferences',
-            onTap: () {},
-          ),
-          const Divider(height: 1, indent: 56),
-          _SettingsTile(
-            icon: Icons.help_outline,
-            title: 'Help & Support',
-            subtitle: 'Get assistance',
-            onTap: () {},
-          ),
+            const Divider(height: 1, indent: 56),
+            _SettingsTile(
+              icon: Icons.location_on_outlined,
+              title: 'Shipping Address',
+              subtitle: 'Manage your addresses',
+              onTap: () {},
+            ),
+            const Divider(height: 1, indent: 56),
+            _SettingsTile(
+              icon: Icons.credit_card,
+              title: 'Payment Methods',
+              subtitle: 'Manage your cards',
+              onTap: () {},
+            ),
+            const Divider(height: 1, indent: 56),
+            _SettingsTile(
+              icon: Icons.notifications_outlined,
+              title: 'Notifications',
+              subtitle: 'Push & email preferences',
+              onTap: () {},
+            ),
+            const Divider(height: 1, indent: 56),
+            _SettingsTile(
+              icon: Icons.help_outline,
+              title: 'Help & Support',
+              subtitle: 'Get assistance',
+              onTap: () {},
+            ),
           ],
         ),
       ),
@@ -139,17 +139,11 @@ class _SettingsTile extends StatelessWidget {
           color: LuminousColors.surface,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Icon(
-          icon,
-          size: 20,
-          color: LuminousColors.onSurface,
-        ),
+        child: Icon(icon, size: 20, color: LuminousColors.onSurface),
       ),
       title: Text(
         title,
-        style: GoogleFonts.plusJakartaSans(
-          fontWeight: FontWeight.w600,
-        ),
+        style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
       ),
       subtitle: Text(
         subtitle,
