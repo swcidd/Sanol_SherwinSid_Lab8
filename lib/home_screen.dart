@@ -3,14 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'store.dart';
 import 'product_card.dart';
 import 'product_detail_screen.dart';
+import 'theme.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final categories = ['All', 'Chairs', 'Tables', 'Cupboards'];
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedCategoryIndex = 0;
+  final List<String> _categories = ['All', 'Chairs', 'Tables', 'Cupboards'];
+
+  List<Product> get _filteredProducts {
+    if (_selectedCategoryIndex == 0) return allProducts;
+    final selectedCategory = _categories[_selectedCategoryIndex];
+    return allProducts.where((p) => p.category == selectedCategory).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -46,21 +59,10 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      ClipOval(
-                        child: Image.network(
-                          'https://scontent.fcgy2-4.fna.fbcdn.net/v/t39.30808-6/489823654_638527112358797_3786538714552230693_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=105&ccb=1-7&_nc_sid=a5f93a',
-                          width: 48,
-                          height: 48,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              width: 48,
-                              height: 48,
-                              color: Theme.of(context).colorScheme.secondary,
-                              child: const Icon(Icons.person, size: 20),
-                            );
-                          },
-                        ),
+                      const CircleAvatar(
+                        radius: 24,
+                        backgroundImage: AssetImage('profile.jpg'),
+                        backgroundColor: LuminousColors.containerLow,
                       ),
                     ],
                   ),
@@ -69,26 +71,39 @@ class HomeScreen extends StatelessWidget {
                     height: 40,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      itemCount: categories.length,
-                      separatorBuilder: (context, index) => const SizedBox(width: 12),
+                      itemCount: _categories.length,
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 12),
                       itemBuilder: (context, index) {
-                        final isSelected = index == 0;
-                        return Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.secondary,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Center(
-                            child: Text(
-                              categories[index],
-                              style: GoogleFonts.plusJakartaSans(
-                                color: isSelected
-                                    ? Theme.of(context).colorScheme.onPrimary
-                                    : Theme.of(context).colorScheme.onSurface,
-                                fontWeight: FontWeight.w500,
+                        final isSelected = index == _selectedCategoryIndex;
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedCategoryIndex = index;
+                            });
+                          },
+                          child: Container(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.secondary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Center(
+                              child: Text(
+                                _categories[index],
+                                style: GoogleFonts.plusJakartaSans(
+                                  color: isSelected
+                                      ? Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSurface,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
@@ -111,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final product = allProducts[index];
+                    final product = _filteredProducts[index];
                     return ProductCard(
                       product: product,
                       onTap: () {
@@ -125,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                       },
                     );
                   },
-                  childCount: allProducts.length,
+                  childCount: _filteredProducts.length,
                 ),
               ),
             ),

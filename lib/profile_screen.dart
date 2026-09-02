@@ -28,42 +28,10 @@ class ProfileScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          Container(
-            width: 100,
-            height: 100,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Image.network(
-              'https://scontent.fcgy2-4.fna.fbcdn.net/v/t39.30808-6/489823654_638527112358797_3786538714552230693_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=105&ccb=1-7&_nc_sid=a5f93a',
-              fit: BoxFit.cover,
-              width: 100,
-              height: 100,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  width: 100,
-                  height: 100,
-                  color: LuminousColors.containerLow,
-                  child: const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: 100,
-                  height: 100,
-                  color: LuminousColors.containerLow,
-                  child: Icon(
-                    Icons.person,
-                    size: 40,
-                    color: LuminousColors.onSurface.withValues(alpha: 0.5),
-                  ),
-                );
-              },
-            ),
+          const CircleAvatar(
+            radius: 50,
+            backgroundImage: AssetImage('profile.jpg'),
+            backgroundColor: LuminousColors.containerLow,
           ),
           const SizedBox(height: 16),
           Text(
@@ -89,11 +57,9 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildSettingsSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Container(
-        decoration: BoxDecoration(
-          color: LuminousColors.containerLow,
-          borderRadius: BorderRadius.circular(24),
-        ),
+      child: Material(
+        color: LuminousColors.containerLow,
+        borderRadius: BorderRadius.circular(24),
         child: Column(
           children: [
             _SettingsTile(
