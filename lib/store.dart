@@ -43,7 +43,7 @@ const List<Product> allProducts = [
     subcategory: 'Dining',
     price: 34999,
     rating: 4.9,
-    imageUrl: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80',
     description: 'Solid oak dining table with a natural finish. Seats 6-8 people comfortably.',
     icon: Icons.dining,
   ),
