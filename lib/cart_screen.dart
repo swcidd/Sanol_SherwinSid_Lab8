@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'store.dart';
 import 'theme.dart';
@@ -40,7 +39,7 @@ class CartScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    LucideIcons.shoppingBag,
+                    Icons.shopping_bag_outlined,
                     size: 64,
                     color: LuminousColors.onSurface.withValues(alpha: 0.3),
                   ),
@@ -188,7 +187,7 @@ class _CartItemTile extends StatelessWidget {
           Column(
             children: [
               IconButton(
-                icon: const Icon(LucideIcons.trash2, size: 18),
+                icon: const Icon(Icons.delete_outline, size: 18),
                 onPressed: onRemove,
                 color: Colors.red.withValues(alpha: 0.7),
                 padding: EdgeInsets.zero,
@@ -204,7 +203,7 @@ class _CartItemTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.minus, size: 16),
+                      icon: const Icon(Icons.remove, size: 16),
                       onPressed: onDecrement,
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
@@ -220,7 +219,7 @@ class _CartItemTile extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(LucideIcons.plus, size: 16),
+                      icon: const Icon(Icons.add, size: 16),
                       onPressed: onIncrement,
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'theme.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -38,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             child: Center(
               child: Icon(
-                LucideIcons.user,
+                Icons.person,
                 size: 40,
                 color: LuminousColors.onSurface.withValues(alpha: 0.7),
               ),
@@ -76,35 +75,35 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             _SettingsTile(
-              icon: LucideIcons.package,
+              icon: Icons.receipt_long,
               title: 'My Orders',
               subtitle: 'View your order history',
               onTap: () {},
             ),
           const Divider(height: 1, indent: 56),
           _SettingsTile(
-            icon: LucideIcons.mapPin,
+            icon: Icons.location_on_outlined,
             title: 'Shipping Address',
             subtitle: 'Manage your addresses',
             onTap: () {},
           ),
           const Divider(height: 1, indent: 56),
           _SettingsTile(
-            icon: LucideIcons.creditCard,
+            icon: Icons.credit_card,
             title: 'Payment Methods',
             subtitle: 'Manage your cards',
             onTap: () {},
           ),
           const Divider(height: 1, indent: 56),
           _SettingsTile(
-            icon: LucideIcons.bell,
+            icon: Icons.notifications_outlined,
             title: 'Notifications',
             subtitle: 'Push & email preferences',
             onTap: () {},
           ),
           const Divider(height: 1, indent: 56),
           _SettingsTile(
-            icon: LucideIcons.helpCircle,
+            icon: Icons.help_outline,
             title: 'Help & Support',
             subtitle: 'Get assistance',
             onTap: () {},
@@ -160,7 +159,7 @@ class _SettingsTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        LucideIcons.chevronRight,
+        Icons.chevron_right,
         size: 20,
         color: LuminousColors.onSurface.withValues(alpha: 0.4),
       ),

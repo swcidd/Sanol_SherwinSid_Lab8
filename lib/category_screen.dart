@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'store.dart';
 import 'category_products_screen.dart';
 import 'theme.dart';
@@ -79,13 +78,13 @@ class CategoryScreen extends StatelessWidget {
   IconData _getCategoryIcon(String category) {
     switch (category) {
       case 'Chairs':
-        return LucideIcons.armchair;
+        return Icons.chair;
       case 'Tables':
-        return LucideIcons.table;
+        return Icons.table_bar;
       case 'Cupboards':
-        return LucideIcons.archive;
+        return Icons.archive;
       default:
-        return LucideIcons.grid;
+        return Icons.grid_view;
     }
   }
 }

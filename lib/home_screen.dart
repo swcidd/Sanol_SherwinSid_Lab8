@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'store.dart';
 import 'product_card.dart';
@@ -55,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
-                          LucideIcons.user,
+                          Icons.person,
                           size: 20,
                         ),
                       ),

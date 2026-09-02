@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'theme.dart';
 
 class GlassBottomNavBar extends StatelessWidget {
@@ -16,10 +15,10 @@ class GlassBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      const NavBarItem(icon: LucideIcons.home, label: 'Home'),
-      const NavBarItem(icon: LucideIcons.grid, label: 'Categories'),
-      const NavBarItem(icon: LucideIcons.shoppingBag, label: 'Cart'),
-      const NavBarItem(icon: LucideIcons.user, label: 'Profile'),
+      const NavBarItem(icon: Icons.home, label: 'Home'),
+      const NavBarItem(icon: Icons.grid_view, label: 'Categories'),
+      const NavBarItem(icon: Icons.shopping_bag, label: 'Cart'),
+      const NavBarItem(icon: Icons.person, label: 'Profile'),
     ];
 
     return ClipRRect(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'store.dart';
 import 'theme.dart';
@@ -37,7 +36,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   color: LuminousColors.white,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(LucideIcons.arrowLeft, size: 20),
+                child: const Icon(Icons.arrow_back, size: 20),
               ),
               onPressed: () => Navigator.pop(context),
             ),
@@ -49,7 +48,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     color: LuminousColors.white,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(LucideIcons.heart, size: 20),
+                  child: const Icon(Icons.favorite_border, size: 20),
                 ),
                 onPressed: () {},
               ),
@@ -109,7 +108,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: Row(
                           children: [
                             const Icon(
-                              LucideIcons.star,
+                              Icons.star,
                               size: 16,
                               color: Colors.amber,
                             ),
@@ -210,7 +209,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.minus, size: 20),
+                      icon: const Icon(Icons.remove, size: 20),
                       onPressed: () {
                         if (quantity > 1) {
                           setState(() {
@@ -227,7 +226,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(LucideIcons.plus, size: 20),
+                      icon: const Icon(Icons.add, size: 20),
                       onPressed: () {
                         setState(() {
                           quantity++;
@@ -263,7 +262,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(LucideIcons.shoppingBag, size: 20),
+                      const Icon(Icons.shopping_bag, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         '₱${(product.price * quantity).toStringAsFixed(0)}',

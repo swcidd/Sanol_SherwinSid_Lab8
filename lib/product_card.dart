@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'store.dart';
 import 'theme.dart';
 
@@ -72,7 +71,7 @@ class ProductCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(
-                            LucideIcons.star,
+                            Icons.star,
                             size: 12,
                             color: Colors.amber,
                           ),

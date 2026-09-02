@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 
 class Product {
   final String id;
@@ -35,7 +34,7 @@ const List<Product> allProducts = [
     rating: 4.8,
     imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
     description: 'A beautifully crafted lounge chair with clean lines and premium upholstery. Perfect for modern living spaces.',
-    icon: LucideIcons.armchair,
+    icon: Icons.chair,
   ),
   Product(
     id: '2',
@@ -46,7 +45,7 @@ const List<Product> allProducts = [
     rating: 4.9,
     imageUrl: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800',
     description: 'Solid oak dining table with a natural finish. Seats 6-8 people comfortably.',
-    icon: LucideIcons.table,
+    icon: Icons.table_bar,
   ),
   Product(
     id: '3',
@@ -57,7 +56,7 @@ const List<Product> allProducts = [
     rating: 4.7,
     imageUrl: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800',
     description: 'Luxurious emerald velvet accent chair with gold legs. A statement piece for any room.',
-    icon: LucideIcons.armchair,
+    icon: Icons.chair,
   ),
   Product(
     id: '4',
@@ -68,7 +67,7 @@ const List<Product> allProducts = [
     rating: 4.6,
     imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
     description: 'Sleek modern cupboard with ample storage space. Minimalist design meets functionality.',
-    icon: LucideIcons.archive,
+    icon: Icons.archive,
   ),
   Product(
     id: '5',
@@ -79,7 +78,7 @@ const List<Product> allProducts = [
     rating: 4.8,
     imageUrl: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800',
     description: 'Ergonomic executive office chair with lumbar support. Designed for long working hours.',
-    icon: LucideIcons.armchair,
+    icon: Icons.chair,
   ),
   Product(
     id: '6',
@@ -90,7 +89,7 @@ const List<Product> allProducts = [
     rating: 4.5,
     imageUrl: 'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=800',
     description: 'Elegant glass coffee table with minimalist metal frame. Perfect for contemporary spaces.',
-    icon: LucideIcons.table,
+    icon: Icons.table_bar,
   ),
   Product(
     id: '7',
@@ -101,7 +100,7 @@ const List<Product> allProducts = [
     rating: 4.9,
     imageUrl: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800',
     description: 'Adjustable standing desk with electric motor. Promotes healthy working posture.',
-    icon: LucideIcons.table,
+    icon: Icons.table_bar,
   ),
   Product(
     id: '8',
@@ -112,7 +111,7 @@ const List<Product> allProducts = [
     rating: 4.6,
     imageUrl: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800',
     description: 'Plush velvet dining chair with sturdy wooden legs. Set of 2.',
-    icon: LucideIcons.armchair,
+    icon: Icons.chair,
   ),
 ];
 
