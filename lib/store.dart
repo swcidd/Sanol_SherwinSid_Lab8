@@ -1,0 +1,172 @@
+import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+
+class Product {
+  final String id;
+  final String name;
+  final String category;
+  final String subcategory;
+  final double price;
+  final double rating;
+  final String imageUrl;
+  final String description;
+  final IconData icon;
+
+  const Product({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.subcategory,
+    required this.price,
+    required this.rating,
+    required this.imageUrl,
+    required this.description,
+    required this.icon,
+  });
+}
+
+const List<Product> allProducts = [
+  Product(
+    id: '1',
+    name: 'Minimalist Lounge Chair',
+    category: 'Chairs',
+    subcategory: 'Lounge',
+    price: 24999,
+    rating: 4.8,
+    imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+    description: 'A beautifully crafted lounge chair with clean lines and premium upholstery. Perfect for modern living spaces.',
+    icon: LucideIcons.armchair,
+  ),
+  Product(
+    id: '2',
+    name: 'Oak Dining Table',
+    category: 'Tables',
+    subcategory: 'Dining',
+    price: 34999,
+    rating: 4.9,
+    imageUrl: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800',
+    description: 'Solid oak dining table with a natural finish. Seats 6-8 people comfortably.',
+    icon: LucideIcons.table,
+  ),
+  Product(
+    id: '3',
+    name: 'Emerald Velvet Accent Chair',
+    category: 'Chairs',
+    subcategory: 'Lounge',
+    price: 18999,
+    rating: 4.7,
+    imageUrl: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800',
+    description: 'Luxurious emerald velvet accent chair with gold legs. A statement piece for any room.',
+    icon: LucideIcons.armchair,
+  ),
+  Product(
+    id: '4',
+    name: 'Modern Cupboard',
+    category: 'Cupboards',
+    subcategory: 'Storage',
+    price: 28999,
+    rating: 4.6,
+    imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+    description: 'Sleek modern cupboard with ample storage space. Minimalist design meets functionality.',
+    icon: LucideIcons.archive,
+  ),
+  Product(
+    id: '5',
+    name: 'Executive Office Chair',
+    category: 'Chairs',
+    subcategory: 'Office',
+    price: 22999,
+    rating: 4.8,
+    imageUrl: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800',
+    description: 'Ergonomic executive office chair with lumbar support. Designed for long working hours.',
+    icon: LucideIcons.armchair,
+  ),
+  Product(
+    id: '6',
+    name: 'Glass Coffee Table',
+    category: 'Tables',
+    subcategory: 'Lounge',
+    price: 15999,
+    rating: 4.5,
+    imageUrl: 'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=800',
+    description: 'Elegant glass coffee table with minimalist metal frame. Perfect for contemporary spaces.',
+    icon: LucideIcons.table,
+  ),
+  Product(
+    id: '7',
+    name: 'Standing Desk',
+    category: 'Tables',
+    subcategory: 'Office',
+    price: 27999,
+    rating: 4.9,
+    imageUrl: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800',
+    description: 'Adjustable standing desk with electric motor. Promotes healthy working posture.',
+    icon: LucideIcons.table,
+  ),
+  Product(
+    id: '8',
+    name: 'Velvet Dining Chair',
+    category: 'Chairs',
+    subcategory: 'Dining',
+    price: 8999,
+    rating: 4.6,
+    imageUrl: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800',
+    description: 'Plush velvet dining chair with sturdy wooden legs. Set of 2.',
+    icon: LucideIcons.armchair,
+  ),
+];
+
+class CartItem {
+  final Product product;
+  int quantity;
+
+  CartItem({required this.product, this.quantity = 1});
+}
+
+class CartProvider extends ChangeNotifier {
+  final List<CartItem> _items = [];
+
+  List<CartItem> get items => _items;
+
+  int get itemCount => _items.length;
+
+  double get total => _items.fold(
+        0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
+
+  void addItem(Product product) {
+    final existingIndex = _items.indexWhere(
+      (item) => item.product.id == product.id,
+    );
+
+    if (existingIndex >= 0) {
+      _items[existingIndex].quantity++;
+    } else {
+      _items.add(CartItem(product: product));
+    }
+    notifyListeners();
+  }
+
+  void removeItem(String productId) {
+    _items.removeWhere((item) => item.product.id == productId);
+    notifyListeners();
+  }
+
+  void updateQuantity(String productId, int quantity) {
+    final index = _items.indexWhere((item) => item.product.id == productId);
+    if (index >= 0) {
+      if (quantity <= 0) {
+        _items.removeAt(index);
+      } else {
+        _items[index].quantity = quantity;
+      }
+      notifyListeners();
+    }
+  }
+
+  void clear() {
+    _items.clear();
+    notifyListeners();
+  }
+}

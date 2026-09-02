@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'product.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+import 'store.dart';
+import 'category_products_screen.dart';
+import 'theme.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -11,32 +15,57 @@ class CategoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Categories')),
       body: GridView.builder(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 1.2,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
           final count = allProducts.where((p) => p.category == category).length;
-          return Card(
-            child: Center(
+
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CategoryProductsScreen(category: category),
+                ),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: LuminousColors.containerLow,
+                borderRadius: BorderRadius.circular(24),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(
+                    _getCategoryIcon(category),
+                    size: 40,
+                    color: LuminousColors.onSurface.withValues(alpha: 0.7),
+                  ),
+                  const SizedBox(height: 12),
                   Text(
                     category,
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
                   Text(
                     '$count items',
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: LuminousColors.onSurface.withValues(alpha: 0.6),
+                    ),
                   ),
                 ],
               ),
@@ -45,5 +74,18 @@ class CategoryScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  IconData _getCategoryIcon(String category) {
+    switch (category) {
+      case 'Chairs':
+        return LucideIcons.armchair;
+      case 'Tables':
+        return LucideIcons.table;
+      case 'Cupboards':
+        return LucideIcons.archive;
+      default:
+        return LucideIcons.grid;
+    }
   }
 }
