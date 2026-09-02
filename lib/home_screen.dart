@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'product.dart';
+import 'product_detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,9 +18,17 @@ class HomeScreen extends StatelessWidget {
             title: Text(product.name),
             subtitle: Text(product.category),
             trailing: Text('₱${product.price.toStringAsFixed(2)}'),
-          ); // ListTile
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductDetailScreen(product: product),
+                ),
+              );
+            },
+          );
         },
-      ), // ListView.builder
-    ); // Scaffold
+      ),
+    );
   }
 }
