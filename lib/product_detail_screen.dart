@@ -27,7 +27,7 @@ class ProductDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              '\u20B9${product.price.toStringAsFixed(2)}',
+              '₱${product.price.toStringAsFixed(2)}',
               style: const TextStyle(fontSize: 20),
             ),
           ],
