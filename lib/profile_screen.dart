@@ -31,16 +31,15 @@ class ProfileScreen extends StatelessWidget {
           Container(
             width: 100,
             height: 100,
-            decoration: BoxDecoration(
-              color: LuminousColors.containerLow,
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: Center(
-              child: Icon(
-                Icons.person,
-                size: 40,
-                color: LuminousColors.onSurface.withValues(alpha: 0.7),
-              ),
+            clipBehavior: Clip.antiAlias,
+            child: Image.network(
+              'https://scontent.fcgy2-4.fna.fbcdn.net/v/t39.30808-6/489823654_638527112358797_3786538714552230693_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGKtYf_2vYnWhr_lrZCyxCKXYDAfknq8w1dgMB-SerzDe1rz22A3nDOit6U7IVGr3JbHkA7AhYI2GtHiPdWEbbw&_nc_ohc=3iI6IOOI2CgQ7kNvwEFlRx9&_nc_oc=AdoACfcauzIipAjyejWWXvp09VJ3q7FvqxXlmnVG3roKlONpMwJNGs_wXbu2sdnCRSE&_nc_zt=23&_nc_ht=scontent.fcgy2-4.fna&_nc_gid=4ydoPcG8h-uhmtCXoY3b4g&_nc_ss=7b2a8&oh=00_AQIYcvyQhZKnilM10CqjaJTCdMyC-EfO68Y_uOaFDxReJw&oe=6A9E0E36',
+              fit: BoxFit.cover,
+              width: 100,
+              height: 100,
             ),
           ),
           const SizedBox(height: 16),
@@ -139,7 +138,7 @@ class _SettingsTile extends StatelessWidget {
           color: LuminousColors.surface,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Icon(icon, size: 20, color: LuminousColors.onSurface),
+        child: Icon(icon, size: 22, color: LuminousColors.onSurface),
       ),
       title: Text(
         title,
