@@ -119,8 +119,13 @@ const List<Product> allProducts = [
 class CartItem {
   final Product product;
   int quantity;
+  bool isSelected;
 
-  CartItem({required this.product, this.quantity = 1});
+  CartItem({
+    required this.product,
+    this.quantity = 1,
+    this.isSelected = true,
+  });
 }
 
 class CartProvider extends ChangeNotifier {
@@ -130,10 +135,20 @@ class CartProvider extends ChangeNotifier {
 
   int get itemCount => _items.length;
 
+  List<CartItem> get selectedItems =>
+      _items.where((item) => item.isSelected).toList();
+
   double get total => _items.fold(
         0,
         (sum, item) => sum + (item.product.price * item.quantity),
       );
+
+  double get selectedTotal => selectedItems.fold(
+        0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
+
+  int get selectedCount => selectedItems.length;
 
   void addItem(Product product) {
     final existingIndex = _items.indexWhere(
@@ -163,6 +178,21 @@ class CartProvider extends ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  void toggleSelection(String productId) {
+    final index = _items.indexWhere((item) => item.product.id == productId);
+    if (index >= 0) {
+      _items[index].isSelected = !_items[index].isSelected;
+      notifyListeners();
+    }
+  }
+
+  void selectAll(bool select) {
+    for (var item in _items) {
+      item.isSelected = select;
+    }
+    notifyListeners();
   }
 
   void clear() {
